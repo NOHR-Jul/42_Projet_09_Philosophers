@@ -6,7 +6,7 @@
 /*   By: juchene <juchene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:53:06 by juchene           #+#    #+#             */
-/*   Updated: 2023/02/09 13:41:25 by juchene          ###   ########.fr       */
+/*   Updated: 2023/02/09 14:17:01 by juchene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ph_check_death(t_main *main)
 			}
 		}
 		ref = ph_main_status(main, 0);
-		if (ref)
+		if (ref || ph_check_meals(main))
 			return ;
 		usleep(1000);
 	}	

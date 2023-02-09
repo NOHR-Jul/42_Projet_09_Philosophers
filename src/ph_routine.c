@@ -6,7 +6,7 @@
 /*   By: juchene <juchene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:50:30 by juchene           #+#    #+#             */
-/*   Updated: 2023/02/09 13:57:27 by juchene          ###   ########.fr       */
+/*   Updated: 2023/02/09 14:37:26 by juchene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ph_eating(t_philo *philo_s)	// Nouvelle version
 
 	ret = ph_take_forks(philo_s);
 	if (ret)
-		return (1);
+		return (ret);
 	if (!ph_main_status(philo_s->p_mn, 0))
 	{
 		ph_log(philo_s, EAT);
@@ -66,15 +66,17 @@ void	ph_log(t_philo *philo_s, char *msg)	// Nouvelle version
 	int 		status;
 	
 	status = ph_main_status(philo_s->p_mn, 0);
-	pthread_mutex_lock(philo_s->print_lock);
 	time = get_time_in_ms() - *(philo_s)->time;
 	if (status != 1 || !ft_strncmp(msg, DIED, 4))
+	{
+		pthread_mutex_lock(philo_s->print_lock);
 		printf("%ld %d %s\n", time, (philo_s->ph_id), msg);
+		pthread_mutex_unlock(philo_s->print_lock);
+	}
 	// else if (status == 2)
 	// 	printf("%ld %d %s\n", time, (philo_s->ph_id), msg);
 
 	
-	pthread_mutex_unlock(philo_s->print_lock);
 }
 
 // void	ph_log2(t_philo *philo_s, char *msg)	// A modifier
