@@ -6,12 +6,13 @@
 /*   By: juchene <juchene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:33:28 by juchene           #+#    #+#             */
-/*   Updated: 2023/02/09 10:53:32 by juchene          ###   ########.fr       */
+/*   Updated: 2023/02/10 13:55:38 by juchene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
+//	Function for printing errors
 int	ft_print_err(char *str, int code)
 {
 	int	i;
@@ -23,6 +24,7 @@ int	ft_print_err(char *str, int code)
 	return (code);
 }
 
+//	Function for comparison on two strings
 int	ft_strncmp(const char *str1, const char *str2, size_t n)
 {
 	size_t			i;
@@ -37,6 +39,8 @@ int	ft_strncmp(const char *str1, const char *str2, size_t n)
 	return (s1[i] - s2[i]);
 }
 
+//	Function for convertion of string to long integer
+//	return -1 in error case
 int	ph_atol(char *nbr)
 {
 	long int	nb;
@@ -56,10 +60,11 @@ int	ph_atol(char *nbr)
 		i++;
 	}
 	if (i > 10 || nb != (int)nb)
-		return (-1);
+		return (-1);//////////////////////////////////////////////////
 	return ((int)nb);
 }
 
+//	Function that checks the validity of arguments 
 int	ph_arg_val(char **tab)
 {
 	int	i;
@@ -78,6 +83,7 @@ int	ph_arg_val(char **tab)
 	return (0);
 }
 
+//	Returns the number of miliseconds elapsed since January 1 1970
 long int	get_time_in_ms(void)
 {
 	struct timeval	tv;

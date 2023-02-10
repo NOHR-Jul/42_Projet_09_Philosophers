@@ -6,12 +6,15 @@
 /*   By: juchene <juchene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:48:03 by juchene           #+#    #+#             */
-/*   Updated: 2023/02/10 10:02:00 by juchene          ###   ########.fr       */
+/*   Updated: 2023/02/10 13:54:33 by juchene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
+//	The philo's last meal get/set function
+//	if ref != 0 the last meal is set at ref
+//	returns the number of eaten meal
 long int	ph_last_meal(t_philo *philo, long int ref)
 {
 	long int	ret;
@@ -25,6 +28,9 @@ long int	ph_last_meal(t_philo *philo, long int ref)
 	return (ret);
 }
 
+//	The philo's meal get/set function
+//	if ref != 0 the meal is incremented of one
+//	returns the number of eaten meal
 int	ph_nb_meal(t_philo *philo, int ref)
 {
 	int	ret;
@@ -38,6 +44,7 @@ int	ph_nb_meal(t_philo *philo, int ref)
 	return (ret);
 }
 
+//	Function that checks if the philosophers have eaten the minimum meal
 int	ph_check_meals(t_main *main)
 {
 	int			i;
@@ -64,6 +71,7 @@ int	ph_check_meals(t_main *main)
 	return (0);
 }
 
+//	Function that manages the lock of fork's mutex
 int	ph_take_forks(t_philo *philo_s)
 {
 	if ((philo_s->ph_id % 2) == 0)
@@ -88,6 +96,7 @@ int	ph_take_forks(t_philo *philo_s)
 	return (0);
 }
 
+//	Function that manages the unlock of fork's mutex
 int	ph_return_forks(t_philo *philo_s)
 {
 	if ((philo_s->ph_id % 2) == 0)

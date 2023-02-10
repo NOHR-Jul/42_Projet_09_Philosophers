@@ -6,12 +6,13 @@
 /*   By: juchene <juchene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:36:51 by juchene           #+#    #+#             */
-/*   Updated: 2023/02/10 10:19:58 by juchene          ###   ########.fr       */
+/*   Updated: 2023/02/10 13:15:29 by juchene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
+//	Function to initilize the philosophers struct
 void	ph_init_philo(t_main *main_s, int i)
 {
 	if (pthread_mutex_init(&main_s->philos[i].ph_lock, NULL) != 0)
@@ -36,6 +37,8 @@ void	ph_init_philo(t_main *main_s, int i)
 	main_s->philos[i].p_mn = main_s;
 }
 
+//	Function to allocate the philosophers tab
+//	call of ph_init_philo()
 int	ph_init_philos_tab(t_main *main_s)
 {
 	int	i;
@@ -52,6 +55,8 @@ int	ph_init_philos_tab(t_main *main_s)
 	return (0);
 }
 
+//	Function to allocate the fork's tab
+//	and initialize fork's mutex
 int	ph_init_forks_tab(t_main *main_s)
 {
 	int	i;
@@ -69,6 +74,7 @@ int	ph_init_forks_tab(t_main *main_s)
 	return (0);
 }
 
+//	Function to initialize t_main struct
 int	ph_init_main_s(t_main *main_s, int argc, char **argv)
 {
 	if (pthread_mutex_init(&main_s->print_lock, NULL) != 0)

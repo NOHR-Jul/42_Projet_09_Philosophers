@@ -6,29 +6,30 @@
 /*   By: juchene <juchene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:50:30 by juchene           #+#    #+#             */
-/*   Updated: 2023/02/10 13:01:39 by juchene          ###   ########.fr       */
+/*   Updated: 2023/02/10 13:56:15 by juchene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
+//	Function that manages the display of instructions
 void	ph_log(t_philo *philo_s, char *msg)
 {
 	long int	time;
+	int			status;
 
-	// int			status;
-	// status = ph_main_status(philo_s->p_mn, 0);
-	if (ph_main_status(philo_s->p_mn, 0) != 1 || !ft_strncmp(msg, DIED, 4))
+	status = ph_main_status(philo_s->p_mn, 0);
+	if (status != 1 || !ft_strncmp(msg, DIED, 4))
 	{
 		pthread_mutex_lock(philo_s->print_lock);
 		time = get_time_in_ms() - *(philo_s)->time;
 		printf("%ld %d %s\n", time, (philo_s->ph_id), msg);
-		// else if (status == 2)
-		// 	printf("%ld %d %s\n", time, (philo_s->ph_id), msg);
 		pthread_mutex_unlock(philo_s->print_lock);
 	}
 }
 
+//	Function that simulates a philosopher's eating instruction
+//	Call of ph_main_status() ph_log() ph_usleep()
 int	ph_eating(t_philo *philo_s)
 {
 	int	ret;
@@ -47,6 +48,8 @@ int	ph_eating(t_philo *philo_s)
 	return (0);
 }
 
+//	Function that simulates a philosopher's sleep instruction
+//	Call of ph_main_status() ph_log() ph_usleep()
 int	ph_sleeping(t_philo *philo_s)
 {
 	if (ph_main_status(philo_s->p_mn, 0))
@@ -56,6 +59,8 @@ int	ph_sleeping(t_philo *philo_s)
 	return (0);
 }
 
+//	Function that simulates a philosopher's thought instruction
+//	Call of ph_main_status() ph_log()
 int	ph_thinking(t_philo *philo_s)
 {
 	if (ph_main_status(philo_s->p_mn, 0))
@@ -82,6 +87,7 @@ int	ph_thinking(t_philo *philo_s)
 // 	pthread_mutex_unlock(philo_s->print_lock);
 // }
 
+//	Set of instructions for threads
 void	*routine(void *philo_s)
 {
 	t_philo		*philo;

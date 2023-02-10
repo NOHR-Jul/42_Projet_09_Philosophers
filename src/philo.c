@@ -6,12 +6,13 @@
 /*   By: juchene <juchene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 14:44:12 by juchene           #+#    #+#             */
-/*   Updated: 2023/02/10 11:53:24 by juchene          ###   ########.fr       */
+/*   Updated: 2023/02/10 13:11:06 by juchene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
+//	Function that displays t_main struct
 void	ph_show_main_s(t_main *main_s)
 {
 	printf("\n-- SHOW MAIN_S --\n\n");
@@ -26,6 +27,7 @@ void	ph_show_main_s(t_main *main_s)
 	printf("\n-- -- -- -- -- --\n\n");
 }
 
+//	Function that displays the content of a tab
 void	ph_show_tab(char *tittle, char **tab)
 {
 	int	i;
@@ -51,7 +53,6 @@ int	main(int argc, char **argv)
 	if (argc < 5 || argc > 6)
 		return (ft_print_err(ARGS_NB, 1));
 	ph_init_main_s(&main_s, argc, argv);
-	// ph_show_main_s(&main_s);
 	if (!ph_arg_val(argv))
 		ph_process(&main_s);
 	else

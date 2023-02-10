@@ -6,12 +6,13 @@
 /*   By: juchene <juchene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:53:06 by juchene           #+#    #+#             */
-/*   Updated: 2023/02/10 11:54:30 by juchene          ###   ########.fr       */
+/*   Updated: 2023/02/10 13:55:03 by juchene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
+//	Function uslepp with intern status check
 void	ph_usleep(t_main *main, long int sleep_time)
 {
 	long int	time;
@@ -30,6 +31,9 @@ void	ph_usleep(t_main *main, long int sleep_time)
 	}
 }
 
+//	The main status get/set function
+//	if ref != 0 the status is set at ref
+//	returns the status of main
 int	ph_main_status(t_main *main, int ref)
 {
 	int	ret;
@@ -42,20 +46,6 @@ int	ph_main_status(t_main *main, int ref)
 	pthread_mutex_unlock(&main->status_lock);
 	return (ret);
 }
-
-// int	ph_main_status2(t_main *main, int ref)
-// {
-// 	int	ret;
-
-// 	ret = 0;
-// 	ph_check_meals(main);
-// 	pthread_mutex_lock(&main->status_lock);
-// 	if (ref)
-// 		main->mn_status = ref;
-// 	ret = main->mn_status;
-// 	pthread_mutex_unlock(&main->status_lock);
-// 	return (ret);
-// }
 
 void	ph_check_death(t_main *main)
 {
@@ -84,6 +74,8 @@ void	ph_check_death(t_main *main)
 	}	
 }
 
+//	Function which create the thread of a philosopher 
+//	with the function with which the thread begins its execution
 int	ph_thread_launch(t_philo *philo)
 {
 	ph_last_meal(philo, get_time_in_ms());
@@ -92,6 +84,9 @@ int	ph_thread_launch(t_philo *philo)
 	return (0);
 }
 
+//	Function to launch all threads, the death checker and the thread join
+//	Call of ph_thread_launch()
+//	Call of ph_check_death()
 void	ph_process(t_main *main_s)
 {
 	int	i;
