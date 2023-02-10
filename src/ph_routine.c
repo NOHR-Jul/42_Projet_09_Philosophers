@@ -6,13 +6,13 @@
 /*   By: juchene <juchene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:50:30 by juchene           #+#    #+#             */
-/*   Updated: 2023/02/09 14:37:26 by juchene          ###   ########.fr       */
+/*   Updated: 2023/02/10 09:58:27 by juchene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-int	ph_eating(t_philo *philo_s)	// Nouvelle version
+int	ph_eating(t_philo *philo_s)
 {
 	int	ret;
 
@@ -45,7 +45,7 @@ int	ph_eating(t_philo *philo_s)	// Nouvelle version
 // 	return (0);
 // }
 
-void	ph_sleeping(t_philo *philo_s)	// Nouvelle version
+void	ph_sleeping(t_philo *philo_s)
 {
 	if (ph_main_status(philo_s->p_mn, 0))
 		return ;
@@ -53,18 +53,18 @@ void	ph_sleeping(t_philo *philo_s)	// Nouvelle version
 	ph_usleep(philo_s->p_mn, philo_s->time_to_sleep);
 }
 
-void	ph_thinking(t_philo *philo_s)	// Nouvelle version
+void	ph_thinking(t_philo *philo_s)
 {
 	if (ph_main_status(philo_s->p_mn, 0))
 		return ;
 	ph_log(philo_s, THINK);
 }
 
-void	ph_log(t_philo *philo_s, char *msg)	// Nouvelle version
+void	ph_log(t_philo *philo_s, char *msg)
 {
 	long int	time;
-	int 		status;
-	
+	int			status;
+
 	status = ph_main_status(philo_s->p_mn, 0);
 	time = get_time_in_ms() - *(philo_s)->time;
 	if (status != 1 || !ft_strncmp(msg, DIED, 4))
@@ -73,10 +73,8 @@ void	ph_log(t_philo *philo_s, char *msg)	// Nouvelle version
 		printf("%ld %d %s\n", time, (philo_s->ph_id), msg);
 		pthread_mutex_unlock(philo_s->print_lock);
 	}
-	// else if (status == 2)
-	// 	printf("%ld %d %s\n", time, (philo_s->ph_id), msg);
-
-	
+	else if (status == 2)
+		printf("%ld %d %s\n", time, (philo_s->ph_id), msg);
 }
 
 // void	ph_log2(t_philo *philo_s, char *msg)	// A modifier

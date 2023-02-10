@@ -6,7 +6,7 @@
 /*   By: juchene <juchene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:53:06 by juchene           #+#    #+#             */
-/*   Updated: 2023/02/09 14:17:01 by juchene          ###   ########.fr       */
+/*   Updated: 2023/02/10 09:59:14 by juchene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	ph_main_status(t_main *main, int ref)
 	int	ret;
 
 	ret = 0;
-	// ph_check_meals(main);
 	pthread_mutex_lock(&main->status_lock);
 	if (ref)
 		main->mn_status = ref;
@@ -43,6 +42,20 @@ int	ph_main_status(t_main *main, int ref)
 	pthread_mutex_unlock(&main->status_lock);
 	return (ret);
 }
+
+// int	ph_main_status2(t_main *main, int ref)
+// {
+// 	int	ret;
+
+// 	ret = 0;
+// 	ph_check_meals(main);
+// 	pthread_mutex_lock(&main->status_lock);
+// 	if (ref)
+// 		main->mn_status = ref;
+// 	ret = main->mn_status;
+// 	pthread_mutex_unlock(&main->status_lock);
+// 	return (ret);
+// }
 
 void	ph_check_death(t_main *main)
 {

@@ -6,7 +6,7 @@
 /*   By: juchene <juchene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:48:03 by juchene           #+#    #+#             */
-/*   Updated: 2023/02/08 14:48:56 by juchene          ###   ########.fr       */
+/*   Updated: 2023/02/10 09:56:36 by juchene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ int	ph_check_meals(t_main *main)
 			ref++;
 			if (ref == main->nbr_phil - 1)
 			{
-				main->mn_status = 2;
+				if (main->mn_status != 1)
+					main->mn_status = 2;
 				pthread_mutex_unlock(&main->status_lock);
 				return (1);
 			}
