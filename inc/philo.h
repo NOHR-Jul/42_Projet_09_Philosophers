@@ -6,7 +6,7 @@
 /*   By: juchene <juchene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 12:50:05 by juchene           #+#    #+#             */
-/*   Updated: 2023/02/09 11:12:17 by juchene          ###   ########.fr       */
+/*   Updated: 2023/02/10 12:59:14 by juchene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,8 +154,8 @@ int			ph_return_forks(t_philo *philo_s);
 
 //	**	ph_routine.c	**	//
 int			ph_eating(t_philo *philo_s);
-void		ph_sleeping(t_philo *philo_s);
-void		ph_thinking(t_philo *philo_s);
+int			ph_sleeping(t_philo *philo_s);
+int			ph_thinking(t_philo *philo_s);
 void		ph_log(t_philo *philo_s, char *msg);
 void		*routine(void *philo_s);
 

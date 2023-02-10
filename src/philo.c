@@ -6,7 +6,7 @@
 /*   By: juchene <juchene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 14:44:12 by juchene           #+#    #+#             */
-/*   Updated: 2023/02/09 09:59:03 by juchene          ###   ########.fr       */
+/*   Updated: 2023/02/10 11:53:24 by juchene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	main(int argc, char **argv)
 	if (argc < 5 || argc > 6)
 		return (ft_print_err(ARGS_NB, 1));
 	ph_init_main_s(&main_s, argc, argv);
+	// ph_show_main_s(&main_s);
 	if (!ph_arg_val(argv))
 		ph_process(&main_s);
 	else
