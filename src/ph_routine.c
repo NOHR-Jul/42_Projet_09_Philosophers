@@ -6,7 +6,7 @@
 /*   By: juchene <juchene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:50:30 by juchene           #+#    #+#             */
-/*   Updated: 2023/02/10 13:56:15 by juchene          ###   ########.fr       */
+/*   Updated: 2023/02/10 15:13:44 by juchene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ int	ph_eating(t_philo *philo_s)
 {
 	int	ret;
 
-	ret = ph_take_forks(philo_s);
-	if (ret)
-		return (ret);
 	if (!ph_main_status(philo_s->p_mn, 0))
 	{
+		ret = ph_take_forks(philo_s);
+		if (ret)
+			return (ret);
 		ph_log(philo_s, EAT);
 		ph_last_meal(philo_s, get_time_in_ms());
 		ph_usleep(philo_s->p_mn, philo_s->time_to_eat);
@@ -68,24 +68,6 @@ int	ph_thinking(t_philo *philo_s)
 	ph_log(philo_s, THINK);
 	return (0);
 }
-
-// void	ph_log2(t_philo *philo_s, char *msg)	// A modifier
-// {
-// 	long int	time;
-
-// 	pthread_mutex_lock(philo_s->print_lock);
-// 	time = get_time_in_ms() - *(philo_s)->time;
-// 	if (!ph_main_status(philo_s->p_mn, 0)
-// 		|| !ft_strncmp(msg, DIED, strlen(DIED)))
-// 		printf("%ld %d %s\n", time, (philo_s->ph_id), msg);
-// 	else if (ph_main_status(philo_s->p_mn, 0) == 2
-// 		&& !ft_strncmp(msg, EAT, strlen(EAT)))
-// 		printf("%ld %d %s\n", time, (philo_s->ph_id), msg);
-// 	else if (ph_main_status(philo_s->p_mn, 0) == 2
-// 		&& !ft_strncmp(msg, TAKE_FORK, strlen(TAKE_FORK)))
-// 		printf("%ld %d %s\n", time, (philo_s->ph_id), msg);	
-// 	pthread_mutex_unlock(philo_s->print_lock);
-// }
 
 //	Set of instructions for threads
 void	*routine(void *philo_s)
