@@ -6,7 +6,7 @@
 /*   By: juchene <juchene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:48:03 by juchene           #+#    #+#             */
-/*   Updated: 2023/02/10 13:54:33 by juchene          ###   ########.fr       */
+/*   Updated: 2023/02/14 18:58:52 by juchene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	ph_check_meals(t_main *main)
 		if (ph_nb_meal(&main->philos[i], 0) == main->philos[i].min_meal)
 		{
 			ref++;
-			if (ref == main->nbr_phil - 1)
+			if (ref == main->nbr_phil)
 			{
 				if (main->mn_status != 1)
 					main->mn_status = 2;

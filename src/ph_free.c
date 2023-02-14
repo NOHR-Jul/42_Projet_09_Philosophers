@@ -6,12 +6,13 @@
 /*   By: juchene <juchene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:04 by juchene           #+#    #+#             */
-/*   Updated: 2023/02/09 10:02:00 by juchene          ###   ########.fr       */
+/*   Updated: 2023/02/10 15:37:18 by juchene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
+//	Function to destroy forks mutexes and free the fork array
 void	ph_free_forks_tab(t_main *main_s)
 {
 	int	i;
@@ -28,6 +29,7 @@ void	ph_free_forks_tab(t_main *main_s)
 		free(main_s->forks);
 }
 
+//	Function to destroy main mutexes and free the philo array
 void	ph_free_main(t_main *main_s)
 {
 	int	i;

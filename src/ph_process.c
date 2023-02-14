@@ -6,7 +6,7 @@
 /*   By: juchene <juchene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:53:06 by juchene           #+#    #+#             */
-/*   Updated: 2023/02/10 13:55:03 by juchene          ###   ########.fr       */
+/*   Updated: 2023/02/14 18:59:16 by juchene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	ph_main_status(t_main *main, int ref)
 	return (ret);
 }
 
+//	Death check, check the condition of a philosopher 
+//	if he has not eaten the required number of meals
 void	ph_check_death(t_main *main)
 {
 	int			i;

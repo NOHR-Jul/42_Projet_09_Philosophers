@@ -6,7 +6,7 @@
 /*   By: juchene <juchene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 14:44:12 by juchene           #+#    #+#             */
-/*   Updated: 2023/02/10 13:11:06 by juchene          ###   ########.fr       */
+/*   Updated: 2023/02/10 16:59:56 by juchene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,16 @@ void	ph_show_tab(char *tittle, char **tab)
 	}
 }
 
-// temps pour penser fixe ou parametre				// OK
-// detection de mort en prenant les fourchettes		// OK
-// a verifier si timetosleep = 0					// OK
-// gestion des erreurs								// OK
-// verif de la mort dans le usleep
 int	main(int argc, char **argv)
 {
 	t_main	main_s;
 
 	if (argc < 5 || argc > 6)
 		return (ft_print_err(ARGS_NB, 1));
+	if (ph_arg_val(argv))
+		return (ft_print_err(ARGS_VAL, 2));
 	ph_init_main_s(&main_s, argc, argv);
-	if (!ph_arg_val(argv))
-		ph_process(&main_s);
-	else
-		ft_print_err(ARGS_VAL, 2);
+	ph_process(&main_s);
 	pthread_mutex_destroy(&main_s.print_lock);
 	pthread_mutex_destroy(&main_s.status_lock);
 	ph_free_main(&main_s);

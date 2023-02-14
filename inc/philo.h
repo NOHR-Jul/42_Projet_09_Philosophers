@@ -6,7 +6,7 @@
 /*   By: juchene <juchene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 12:50:05 by juchene           #+#    #+#             */
-/*   Updated: 2023/02/10 12:59:14 by juchene          ###   ########.fr       */
+/*   Updated: 2023/02/10 15:28:46 by juchene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,56 +27,6 @@
 # define SLEEP		"is sleeping"
 # define THINK		"is thinking"
 # define DIED		"died"
-
-// parsing args :	/!\ if nb must be an integer > 0
-
-// 	- number_of_philosophers
-// 	- time_to_die
-// 	- time_to_eat
-// 	- time_to_sleep
-// 	- number_of_times_each_philosopher_must_eat (optionnel)
-
-// Calcul du temps de reflection :
-
-// 	time_to_think = 
-//	(time_to_die - (get_time_in_ms() - philo->last_meal) - time_to_eat) / 2
-
-// usleep pour les philosophes avec un identifiant impair (ou pair)
-
-// number_of_philosophers : Le nombre de philosophes, mais aussi le nombre
-// de fourchettes.
-
-// time_to_die (en millisecondes) : 
-//	Si un philosophe n’a pas commencé à manger time_to_die millisecondes
-//	après le début de son précédent repas ou depuis le début de la 
-//	simulation, il meurt.
-
-// time_to_eat (en millisecondes) : 
-//	Le temps qu’un philosophe prend à manger.
-//	Pendant ce temps, un philosophe doit garder ses deux fourchettes.
-
-// number_of_times_each_philosopher_must_eat (argument optionnel) :
-//	Si tous les philosophes ont mangé au moins 
-//	number_of_times_each_philosopher_must_eat fois, 
-//	la simulation prend fin. Si cet argument n’est pas spécifié, alors 
-//	la simulation prend fin à la mort d’un philosophe.
-
-// Chaque philosophe se voit assigner un numéro entre 1 
-// et number_of_philosophers.
-
-// Le philosophe numéro 1 est assis à côté du philosophe numéro 
-// number_of_philosophers.
-// Les autres suivent cette logique : philosophe numéro N est assis 
-// entre philosophe
-// numéro N - 1 et philosophe numéro N + 1.
-
-// Tout changement d’état d’un philosophe doit être formatté comme suit :
-
-// 	◦ timestamp actuel en millisecondes  numéro de philosophe has taken a fork
-// 	◦ timestamp actuel en millisecondes  numéro de philosophe is eating
-// 	◦ timestamp actuel en millisecondes  numéro de philosophe is sleeping
-// 	◦ timestamp actuel en millisecondes  numéro de philosophe is thinking
-// 	◦ timestamp actuel en millisecondes  numéro de philosophe died
 
 typedef struct s_time
 {

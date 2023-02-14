@@ -6,7 +6,7 @@
 #    By: juchene <juchene@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/08 15:49:00 by juchene           #+#    #+#              #
-#    Updated: 2023/02/08 16:01:53 by juchene          ###   ########.fr        #
+#    Updated: 2023/02/10 15:29:16 by juchene          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,4 +72,4 @@ re				:	fclean
 
 -include $(DEPS)
 
-.PHONY			:	all, clean, fclean, re
+.PHONY			:	all, san, clean, fclean, re

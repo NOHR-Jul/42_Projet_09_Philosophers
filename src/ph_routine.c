@@ -6,7 +6,7 @@
 /*   By: juchene <juchene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:50:30 by juchene           #+#    #+#             */
-/*   Updated: 2023/02/10 15:13:44 by juchene          ###   ########.fr       */
+/*   Updated: 2023/02/14 18:59:46 by juchene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int	ph_eating(t_philo *philo_s)
 		ph_last_meal(philo_s, get_time_in_ms());
 		ph_usleep(philo_s->p_mn, philo_s->time_to_eat);
 		ph_nb_meal(philo_s, 1);
+		ph_return_forks(philo_s);
 	}
-	ph_return_forks(philo_s);
 	return (0);
 }
 
@@ -76,13 +76,37 @@ void	*routine(void *philo_s)
 	long int	spend;
 	int			ret;
 
-	// time_t		time;
 	philo = (t_philo *)philo_s;
 	ret = ph_main_status(philo->p_mn, 0);
 	while (ret == 0)
 	{
-		// time = get_time_in_ms();
-		// spend = (ph_last_meal(philo, 0) + philo->time_to_die - time) * 8 / 10;
+		spend = 500;
+		if (philo->meal > 0)
+			usleep(spend);
+		if (ph_main_status(philo->p_mn, 0))
+			return (NULL);
+		ret = ph_eating(philo);
+		ph_check_meals(philo->p_mn);
+		if (philo->meal == philo->min_meal || ph_main_status(philo->p_mn, 0)
+			|| ret)
+			return (NULL);
+		ret += ph_sleeping(philo);
+		ret += ph_thinking(philo);
+	}
+	return (philo_s);
+}
+
+//	Set of instructions for threads
+void	*routine2(void *philo_s)
+{
+	t_philo		*philo;
+	long int	spend;
+	int			ret;
+
+	philo = (t_philo *)philo_s;
+	ret = ph_main_status(philo->p_mn, 0);
+	while (ret == 0)
+	{
 		spend = 500;
 		if (philo->meal > 0)
 			usleep(spend);
