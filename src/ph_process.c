@@ -6,7 +6,7 @@
 /*   By: juchene <juchene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:53:06 by juchene           #+#    #+#             */
-/*   Updated: 2023/02/14 18:59:16 by juchene          ###   ########.fr       */
+/*   Updated: 2023/02/15 17:31:05 by juchene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ void	ph_check_death(t_main *main)
 		i = -1;
 		while (++i < main->nbr_phil)
 		{
-			if (ph_nb_meal(&main->philos[i], 0) == main->philos[i].min_meal)
-				continue ;
 			ref = (get_time_in_ms() - ph_last_meal(&main->philos[i], 0));
 			if (ref >= (main->philos[i].time_to_die))
 			{
@@ -72,7 +70,7 @@ void	ph_check_death(t_main *main)
 		ref = ph_main_status(main, 0);
 		if (ref || ph_check_meals(main))
 			return ;
-		usleep(500);
+		usleep(1000);
 	}	
 }
 
@@ -94,13 +92,14 @@ void	ph_process(t_main *main_s)
 	int	i;
 
 	i = 0;
+	main_s->time = get_time_in_ms();
 	while (i < main_s->nbr_phil)
 	{
 		if (ph_thread_launch(&main_s->philos[i]))
 			return ;
 		i += 2;
 	}
-	usleep(80);
+	usleep(50);
 	i = 1;
 	while (i < main_s->nbr_phil)
 	{
@@ -108,9 +107,8 @@ void	ph_process(t_main *main_s)
 			return ;
 		i += 2;
 	}
-	usleep(100);
+	usleep(150);
 	ph_check_death(main_s);
-	usleep(200);
 	i = main_s->nbr_phil;
 	while (i-- > 0)
 		pthread_join(main_s->philos[i].ph_th, NULL);

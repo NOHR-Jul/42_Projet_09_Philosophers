@@ -6,7 +6,7 @@
 /*   By: juchene <juchene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:48:03 by juchene           #+#    #+#             */
-/*   Updated: 2023/02/14 18:58:52 by juchene          ###   ########.fr       */
+/*   Updated: 2023/02/15 17:32:40 by juchene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,17 @@ int	ph_nb_meal(t_philo *philo, int ref)
 //	Function that checks if the philosophers have eaten the minimum meal
 int	ph_check_meals(t_main *main)
 {
-	int			i;
-	long int	ref;
+	int	i;
+	int	ref;
 
 	i = -1;
 	ref = 0;
+	if (main->min_meal == -1)
+		return (0);
 	pthread_mutex_lock(&main->status_lock);
 	while (++i < main->nbr_phil)
 	{
-		if (ph_nb_meal(&main->philos[i], 0) == main->philos[i].min_meal)
+		if (ph_nb_meal(&main->philos[i], 0) >= main->min_meal)
 		{
 			ref++;
 			if (ref == main->nbr_phil)
@@ -65,7 +67,7 @@ int	ph_check_meals(t_main *main)
 				pthread_mutex_unlock(&main->status_lock);
 				return (1);
 			}
-		}			
+		}
 	}
 	pthread_mutex_unlock(&main->status_lock);
 	return (0);

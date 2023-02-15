@@ -6,7 +6,7 @@
 /*   By: juchene <juchene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:33:28 by juchene           #+#    #+#             */
-/*   Updated: 2023/02/13 10:22:34 by juchene          ###   ########.fr       */
+/*   Updated: 2023/02/15 16:39:11 by juchene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ph_atol(char *nbr)
 	{
 		nb *= 10;
 		if (nbr[i] < 48 || nbr[i] > 57)
-			return (0);
+			return (-1);
 		else
 			nb += (nbr[i] - 48);
 		i++;
@@ -76,9 +76,14 @@ int	ph_arg_val(char **tab)
 		return (i);
 	while (tab && tab[i])
 	{
-		if (ph_atol(tab[i]) <= 0)
+		if (ph_atol(tab[i]) < 0)
 			return (i);
 		i++;
+	}
+	if (i == 6)
+	{
+		if (!ph_atol(tab[5]))
+			return (i);
 	}
 	return (0);
 }

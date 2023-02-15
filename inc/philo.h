@@ -6,7 +6,7 @@
 /*   By: juchene <juchene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 12:50:05 by juchene           #+#    #+#             */
-/*   Updated: 2023/02/10 15:28:46 by juchene          ###   ########.fr       */
+/*   Updated: 2023/02/15 12:56:08 by juchene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_philo
 	long int		time_to_eat;
 	long int		time_to_sleep;
 	long int		last_meal;
-	int				min_meal;
+	long int		min_meal;
 	int				meal;
 	t_fork			*forks[2];
 	struct s_main	*p_mn;
@@ -67,7 +67,7 @@ typedef struct s_main
 	long int		time_to_die;
 	long int		time_to_eat;
 	long int		time_to_sleep;
-	int				min_meal;
+	long int		min_meal;
 	t_philo			*philos;
 	t_fork			*forks;
 	pthread_mutex_t	print_lock;
