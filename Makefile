@@ -3,73 +3,64 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juchene <juchene@student.42.fr>            +#+  +:+       +#+         #
+#    By: aouichou <aouichou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/08 15:49:00 by juchene           #+#    #+#              #
-#    Updated: 2023/02/10 15:29:16 by juchene          ###   ########.fr        #
+#    Created: 2022/12/28 18:05:54 by aouichou          #+#    #+#              #
+#    Updated: 2023/02/10 17:47:19 by aouichou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-DIR_HEADER		=	inc/
+NAME		= minishell
 
-OBJ_DIR			=	obj/
+SRC_D		= srcs/
+OBJ_D		= objs/
+INC_D		= include/
 
-DEP_DIR			=	obj/
+SRC			= main.c				\
+			init.c					\
+			env.c					\
+			error.c					\
+			tools.c					\
+			execute.c				\
+			expander.c				\
+			free.c					\
+			lexer.c					\
+			parser.c				\
+			prompt.c				\
+			signals.c				\
+			split_check_quotes.c	\
+			builtins.c				\
+			ft_exit.c				\
+			unquote.c				\
+			fill_list.c				\
+			heredoc.c				\
+			get_fd.c				\
+			cmds_split_trim.c		\
+			pipex.c					\
+			export.c				\
 
-SRC_DIR			=	src/
+OBJ			= $(addprefix $(OBJ_D), $(SRC:.c=.o))
+FLAGS		= -g #-fsanitize=address #-Wall -Werror -Wextra 
+INCS		= -I $(INC_D) -I libft/ -lreadline -L ./libft/ -lft
 
-SRC				=	philo.c ph_utils.c ph_init.c ph_free.c ph_meal.c \
-					ph_routine.c ph_process.c
+all: $(OBJ_D) $(NAME)
 
-OBJ				=	$(SRC:.c=.o)
+$(OBJ_D):
+	@mkdir -p $@
 
-OBJS			=	$(addprefix $(OBJ_DIR), $(OBJ))
+$(NAME): $(OBJ)
+	@make -C libft
+	gcc $(FLAGS) $^ -o $@ $(INCS)
 
-DEP				=	$(SRC:.c=.d)
+$(OBJ_D)%.o: $(SRC_D)%.c
+	gcc $(FLAGS) -o $@ -c $< $(INCS)
 
-DEPS			=	$(addprefix $(DEP_DIR), $(DEP))
+clean:
+	rm -rf $(OBJ_D)
 
-NAME			=	philo
+fclean: clean
+	rm -f $(NAME)
 
-NAME_SAN		=	philo_san
+re: fclean all
 
-CC				=	gcc
-
-RM				=	rm -f
-
-RMDIR			=	rm -rf
-
-MKDIR			=	mkdir -p
-
-CFLAGS			=	-MMD -Wall -Werror -Wextra -g
-
-CFLAGSAN		=	-MMD -Wall -Werror -Wextra -g3 -fsanitize=thread
-
-$(NAME)			:	$(OBJS)
-					@$(CC) $(CFLAGS) $(OBJS) -o $@ -I $(DIR_HEADER)
-
-$(NAME_SAN)		:	$(OBJS)
-					@$(CC) $(CFLAGSAN) $(OBJS) -o $@ -I $(DIR_HEADER)
-					
-all				:	$(NAME)
-
-san				:	$(NAME_SAN)
-
-$(OBJ_DIR)%.o	:	$(SRC_DIR)%.c
-					@$(MKDIR) $(OBJ_DIR)
-					$(CC) $(CFLAGS) -c $< -o $@ -I $(DIR_HEADER)
-
-clean			:
-					@$(RM) $(OBJS) $(DEPS)
-					$(RMDIR) $(OBJ_DIR)
-
-fclean			:	clean
-					@$(RM) $(NAME)
-					@$(RM) $(NAME_SAN)
-
-re				:	fclean
-					make all
-
--include $(DEPS)
-
-.PHONY			:	all, san, clean, fclean, re
+.PHONY: clean fclean re all bonus
